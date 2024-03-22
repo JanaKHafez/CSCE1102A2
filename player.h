@@ -3,6 +3,8 @@
 #include <QGraphicsItem>
 #include <QObject>
 #include <QGraphicsTextItem>
+#include <QApplication>
+//#include <QMediaPlayer>
 
 class Player: public QObject, public QGraphicsPixmapItem
 {
@@ -20,6 +22,7 @@ public slots:
 private:
     int score;
     int health;
+    //QMediaPlayer* bulletSound;
 
 };
 

@@ -30,8 +30,7 @@ int main(int argc, char *argv[])
     Player *player = new  Player();
 
     // *******  Setting the foucs to the Player ********
-    //! Change to relative path:
-    player->setPixmap(QPixmap("C:/Users/janak/OneDrive/Documents/Computing/QT/session 5 - game - Exercise/ship.png"));
+    player->setPixmap(QPixmap(":/img/img/ship.png"));
     player->setFlag(QGraphicsItem::ItemIsFocusable);
     player->setFocus();
     // *******  Adjust the location of the Player (middle of the screen) ********
@@ -47,5 +46,4 @@ int main(int argc, char *argv[])
 
     return a.exec();
 
-    //! Bonus step missing
 }

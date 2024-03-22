@@ -5,10 +5,9 @@
 #include <QTimer>
 #include <QDebug>
 
-Enemy::Enemy() {
+Enemy::Enemy():QObject(), QGraphicsPixmapItem() {
 
-    //! Change to relative path:
-    setPixmap(QPixmap("C:/Users/janak/OneDrive/Documents/Computing/QT/session 5 - game - Exercise/chicken.png"));
+    setPixmap(QPixmap(":/img/img/chicken.png"));
 
         // *******  Setting the postion of the enemy within the view dimensions ********
     int random_number = rand() % 700;

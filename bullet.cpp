@@ -4,17 +4,22 @@
 #include <QList>
 #include <enemy.h>
 #include <player.h>
+//#include <QMediaPlayer>
+
 
 Bullet::Bullet(Player* p):QObject(), QGraphicsPixmapItem() {
 
-    //! Change to relative path:
-    setPixmap(QPixmap("C:/Users/janak/OneDrive/Documents/Computing/QT/session 5 - game - Exercise/red_laser.png"));
+    setPixmap(QPixmap(":/img/img/red_laser.png"));
 
         // *******  Generating the Bullets automatically ********
     QTimer * timer = new QTimer();
     connect(timer, SIGNAL(timeout()),this,SLOT (move()));
     timer->start(50);
     player = p;
+
+    //killSound = new QMediaPlayer();
+    //killSound->setMedia(QUrl(":/sounds/sounds/invaderkilled.wav"))
+
 }
 
 // Move function is used to 1-  move the bullet upwards
@@ -32,6 +37,16 @@ void Bullet:: move()
             scene()->removeItem(this);
             delete this;
             player->increase();
+
+            /*
+            if (killSound->state() == QMediaPlayer::PlayingState) {
+                killSound->setPosition(0);
+            }
+            else if (killSound->state() == QMediaPlayer::StoppedState) {
+                killSound->play();
+            }
+            */
+
             return;
         }
     }

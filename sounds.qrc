@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/sounds">
+        <file>sounds/invaderkilled.wav</file>
+        <file>sounds/shoot.wav</file>
+    </qresource>
+</RCC>
