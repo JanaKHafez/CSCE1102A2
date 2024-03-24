@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QGraphicsTextItem>
 #include <QApplication>
-//#include <QMediaPlayer>
+#include <QMediaPlayer>
 
 class Player: public QObject, public QGraphicsPixmapItem
 {
@@ -17,12 +17,13 @@ public:
     void decrease();
     QGraphicsTextItem* scoreMsg;
     QGraphicsTextItem* healthMsg;
+    QGraphicsTextItem* endMsg;
 public slots:
     void createEnemy();
 private:
     int score;
     int health;
-    //QMediaPlayer* bulletSound;
+    QMediaPlayer* bulletSound;
 
 };
 

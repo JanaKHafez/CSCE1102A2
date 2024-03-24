@@ -4,7 +4,7 @@
 #include <QList>
 #include <enemy.h>
 #include <player.h>
-//#include <QMediaPlayer>
+#include <QMediaPlayer>
 
 
 Bullet::Bullet(Player* p):QObject(), QGraphicsPixmapItem() {
@@ -17,8 +17,8 @@ Bullet::Bullet(Player* p):QObject(), QGraphicsPixmapItem() {
     timer->start(50);
     player = p;
 
-    //killSound = new QMediaPlayer();
-    //killSound->setMedia(QUrl(":/sounds/sounds/invaderkilled.wav"))
+    killSound = new QMediaPlayer();
+    killSound->setSource(QUrl(":/sounds/sounds/invaderkilled.wav"));
 
 }
 
@@ -38,14 +38,14 @@ void Bullet:: move()
             delete this;
             player->increase();
 
-            /*
-            if (killSound->state() == QMediaPlayer::PlayingState) {
+           /*QMediaPlayer::PlaybackState state = killSound->playbackState();
+            if (state == QMediaPlayer::PlayingState) {
                 killSound->setPosition(0);
             }
-            else if (killSound->state() == QMediaPlayer::StoppedState) {
+            else if (state == QMediaPlayer::StoppedState) {
                 killSound->play();
-            }
-            */
+            }*/
+
 
             return;
         }

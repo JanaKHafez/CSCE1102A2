@@ -7,7 +7,8 @@
 
 Enemy::Enemy():QObject(), QGraphicsPixmapItem() {
 
-    setPixmap(QPixmap(":/img/img/chicken.png"));
+    QPixmap pixmap(":/img/img/chicken2.png");
+    setPixmap(QPixmap(":/img/img/chicken2.png"));
 
         // *******  Setting the postion of the enemy within the view dimensions ********
     int random_number = rand() % 700;

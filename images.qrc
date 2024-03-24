@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/img">
-        <file>img/chicken.png</file>
         <file>img/red_laser.png</file>
         <file>img/ship.png</file>
+        <file>img/chicken2.png</file>
     </qresource>
 </RCC>

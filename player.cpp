@@ -4,12 +4,15 @@
 #include <QGraphicsTextItem>
 #include <QDebug>
 #include "enemy.h"
-//#include <QMediaPlayer>
+#include <qtimer.h>
+#include <QMediaPlayer>
+#include <QThread>
 
 
 Player::Player():QObject(), QGraphicsPixmapItem() {
     score = 0;
     health = 3;
+
     QFont font;
     font.setPointSize(16);
     QColor color1(Qt::blue);
@@ -22,9 +25,14 @@ Player::Player():QObject(), QGraphicsPixmapItem() {
     healthMsg->setFont(font);
     healthMsg->setDefaultTextColor(color2);
     healthMsg->setPos(10, 10);
+    font.setPointSize(72);
+    endMsg = new QGraphicsTextItem(QString("GAME OVER"));
+    endMsg->setFont(font);
+    endMsg->setDefaultTextColor(color2);
+    endMsg->setPos(130, 150);
 
-    //bulletSound = new QMediaPlayer();
-    //bulletSound->setMedia(QUrl(":/sounds/sounds/shoot.wav"))
+    bulletSound = new QMediaPlayer();
+    bulletSound->setSource(QUrl(":/sounds/sounds/shoot.wav"));
 }
 
 void Player::keyPressEvent(QKeyEvent *event)
@@ -48,15 +56,15 @@ void Player::keyPressEvent(QKeyEvent *event)
         bullet->setPos(x()+30,y());
         scene()->addItem(bullet);
 
-        /*
-        if (bulletSound->state() == QMediaPlayer::PlayingState) {
+        /*QMediaPlayer::PlaybackState state = bulletSound->playbackState();
+        if (state == QMediaPlayer::PlayingState) {
             bulletSound->setPosition(0);
         }
-        else if (bulletSound->state() == QMediaPlayer::StoppedState) {
+        else if (state == QMediaPlayer::StoppedState) {
             bulletSound->play();
 
-        }
-        */
+        }*/
+
     }
 }
 
@@ -85,6 +93,14 @@ void Player::decrease()
     scene()->addItem(healthMsg);
     if(health < 1)
     {
-        QApplication::quit();
+        QFont font;
+        font.setPointSize(72);
+        QGraphicsTextItem* sMsg = new QGraphicsTextItem(QString("Score: ") + QString::number(score));
+        sMsg->setFont(font);
+        sMsg->setDefaultTextColor(Qt::blue);
+        sMsg->setPos(130, 250);
+        scene()->addItem(sMsg);
+        scene()->addItem(endMsg);
+        QTimer::singleShot(5000, qApp, &QApplication::quit);
     }
 }

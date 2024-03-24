@@ -3,7 +3,7 @@
 #include <QGraphicsItem>
 #include "player.h"
 #include <QObject>
-//#include <QMediaPlayer>
+#include <QMediaPlayer>
 
 
 class Bullet: public QObject, public QGraphicsPixmapItem
@@ -17,7 +17,7 @@ public slots:
     void move();
 private:
     Player* player;
-    //QMediaPlayer* killSound;
+    QMediaPlayer* killSound;
 
 };
 
