@@ -5,6 +5,7 @@
 #include <QGraphicsTextItem>
 #include <QApplication>
 #include <QMediaPlayer>
+#include <QAudioOutput>
 
 class Player: public QObject, public QGraphicsPixmapItem
 {
@@ -24,6 +25,7 @@ private:
     int score;
     int health;
     QMediaPlayer* bulletSound;
+    QAudioOutput* bulletSoundOutput;
 
 };
 

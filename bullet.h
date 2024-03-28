@@ -4,6 +4,7 @@
 #include "player.h"
 #include <QObject>
 #include <QMediaPlayer>
+#include <QAudioOutput>
 
 
 class Bullet: public QObject, public QGraphicsPixmapItem
@@ -17,6 +18,7 @@ public slots:
     void move();
 private:
     Player* player;
+    QAudioOutput* killSoundOutput;
     QMediaPlayer* killSound;
 
 };

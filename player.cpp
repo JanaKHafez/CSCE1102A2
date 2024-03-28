@@ -6,6 +6,7 @@
 #include "enemy.h"
 #include <qtimer.h>
 #include <QMediaPlayer>
+#include <QAudioOutput>
 #include <QThread>
 
 
@@ -31,7 +32,10 @@ Player::Player():QObject(), QGraphicsPixmapItem() {
     endMsg->setDefaultTextColor(color2);
     endMsg->setPos(130, 150);
 
+    bulletSoundOutput = new QAudioOutput();
+    bulletSoundOutput->setVolume(50);
     bulletSound = new QMediaPlayer();
+    bulletSound->setAudioOutput(bulletSoundOutput);
     bulletSound->setSource(QUrl(":/sounds/sounds/shoot.wav"));
 }
 
@@ -56,15 +60,7 @@ void Player::keyPressEvent(QKeyEvent *event)
         bullet->setPos(x()+30,y());
         scene()->addItem(bullet);
 
-        /*QMediaPlayer::PlaybackState state = bulletSound->playbackState();
-        if (state == QMediaPlayer::PlayingState) {
-            bulletSound->setPosition(0);
-        }
-        else if (state == QMediaPlayer::StoppedState) {
-            bulletSound->play();
-
-        }*/
-
+        bulletSound->play();
     }
 }
 

@@ -5,7 +5,7 @@
 #include <enemy.h>
 #include <player.h>
 #include <QMediaPlayer>
-
+#include <QAudioOutput>
 
 Bullet::Bullet(Player* p):QObject(), QGraphicsPixmapItem() {
 
@@ -17,7 +17,10 @@ Bullet::Bullet(Player* p):QObject(), QGraphicsPixmapItem() {
     timer->start(50);
     player = p;
 
+    killSoundOutput = new QAudioOutput();
+    killSoundOutput->setVolume(50);
     killSound = new QMediaPlayer();
+    killSound->setAudioOutput(killSoundOutput);
     killSound->setSource(QUrl(":/sounds/sounds/invaderkilled.wav"));
 
 }
@@ -37,15 +40,7 @@ void Bullet:: move()
             scene()->removeItem(this);
             delete this;
             player->increase();
-
-           /*QMediaPlayer::PlaybackState state = killSound->playbackState();
-            if (state == QMediaPlayer::PlayingState) {
-                killSound->setPosition(0);
-            }
-            else if (state == QMediaPlayer::StoppedState) {
-                killSound->play();
-            }*/
-
+            killSound->play();
 
             return;
         }
