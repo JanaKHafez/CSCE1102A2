@@ -36,7 +36,7 @@ Player::Player():QObject(), QGraphicsPixmapItem() {
     bulletSoundOutput->setVolume(50);
     bulletSound = new QMediaPlayer();
     bulletSound->setAudioOutput(bulletSoundOutput);
-    bulletSound->setSource(QUrl(":/sounds/sounds/shoot.wav"));
+    bulletSound->setSource(QUrl("qrc:/sounds/sounds/shoot.wav"));
 }
 
 void Player::keyPressEvent(QKeyEvent *event)

@@ -18,10 +18,10 @@ Bullet::Bullet(Player* p):QObject(), QGraphicsPixmapItem() {
     player = p;
 
     killSoundOutput = new QAudioOutput();
-    killSoundOutput->setVolume(50);
+    killSoundOutput->setVolume(100);
     killSound = new QMediaPlayer();
     killSound->setAudioOutput(killSoundOutput);
-    killSound->setSource(QUrl(":/sounds/sounds/invaderkilled.wav"));
+    killSound->setSource(QUrl("qrc:/sounds/sounds/invaderkilled.wav"));
 
 }
 
@@ -38,9 +38,12 @@ void Bullet:: move()
             scene()->removeItem(collidingItems[i]);
             delete collidingItems[i];
             scene()->removeItem(this);
-            delete this;
+
             player->increase();
+
             killSound->play();
+
+            delete this;
 
             return;
         }
